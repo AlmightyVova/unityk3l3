@@ -18,10 +18,10 @@ public class ThirdPersonMovement : MonoBehaviour
 
     private Vector3 _targetPosition;
 
-    private Ray ray;
-    private RaycastHit hit;
-    private Vector3 mousepos;
-    private NavMeshAgent agent;
+    private Ray _ray;
+    private RaycastHit _hit;
+    private Vector3 _mousepos;
+    private NavMeshAgent _agent;
 
     private Animator _animator;
     private static readonly int Walking = Animator.StringToHash("walking");
@@ -32,10 +32,10 @@ public class ThirdPersonMovement : MonoBehaviour
     {
         controller.detectCollisions = false;
 
-        agent = GetComponent<NavMeshAgent>();
-        agent.speed = 30;
-        agent.angularSpeed = 120;
-        agent.acceleration = 50;
+        _agent = GetComponent<NavMeshAgent>();
+        _agent.speed = 30;
+        _agent.angularSpeed = 120;
+        _agent.acceleration = 50;
 
         _animator = GetComponent<Animator>();
 
@@ -45,18 +45,18 @@ public class ThirdPersonMovement : MonoBehaviour
 
     private void Update()
     {
-        if (agent.remainingDistance == 0)
+        if (_agent.remainingDistance == 0)
         {
             _animator.SetBool(Walking, false);
         }
 
         if (Input.GetMouseButtonDown(0))
         {
-            mousepos = Input.mousePosition;
-            ray = Camera.main.ScreenPointToRay(mousepos);
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            _mousepos = Input.mousePosition;
+            _ray = Camera.main.ScreenPointToRay(_mousepos);
+            if (Physics.Raycast(_ray, out _hit, Mathf.Infinity))
             {
-                agent.SetDestination(hit.point);
+                _agent.SetDestination(_hit.point);
                 /*_targetPosition = -new Vector3(transform.position.x - hit.point.x, transform.forward.y,
                         transform.position.z - hit.point.z)
                     .normalized;*/
@@ -64,19 +64,19 @@ public class ThirdPersonMovement : MonoBehaviour
 
             _animator.SetBool(Walking, true);
 
-            if (hit.collider.CompareTag("item"))
+            if (_hit.collider.CompareTag("item"))
             {
-                interactableText.text = $"This is an {hit.collider.tag}\n" +
+                interactableText.text = $"This is an {_hit.collider.tag}\n" +
                                         $"Pick up the item";
             }
-            else if (hit.collider.CompareTag("enemy"))
+            else if (_hit.collider.CompareTag("enemy"))
             {
-                interactableText.text = $"This is an {hit.collider.tag}\n" +
+                interactableText.text = $"This is an {_hit.collider.tag}\n" +
                                         $"Fight the enemy";
             }
-            else if (hit.collider.CompareTag("npc"))
+            else if (_hit.collider.CompareTag("npc"))
             {
-                interactableText.text = $"This is an {hit.collider.tag}\n" +
+                interactableText.text = $"This is an {_hit.collider.tag}\n" +
                                         $"Open chat";
             }
             else
