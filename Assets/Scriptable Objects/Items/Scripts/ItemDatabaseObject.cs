@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Scriptable_Objects.Items.Scripts;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Item Database", menuName = "Inventory System/Items/Database")]

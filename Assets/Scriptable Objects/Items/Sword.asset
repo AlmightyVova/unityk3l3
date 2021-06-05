@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13e909da36bd3344abc0ab78a029b321, type: 3}
+  m_Script: {fileID: 11500000, guid: 4aa5d1abcc024b50a7e748c914a881af, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
   id: 2
   uiDisplay: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  type: 1
+  type: 3
   description: Just a sword.
-  attackBonus: 10
-  defenceBonus: 0

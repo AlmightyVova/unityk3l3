@@ -4,31 +4,37 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public enum ItemType
+namespace Scriptable_Objects.Items.Scripts
 {
-    Food,
-    Equipment,
-    Default
-}
-
-public abstract class ItemObject : ScriptableObject
-{
-    public int id;
-    public Sprite uiDisplay;
-    public ItemType type;
-    [TextArea(15,20)]
-    public string description;
-}
-
-[Serializable]
-public class Item
-{
-    public string name;
-    public int id;
-
-    public Item(ItemObject item)
+    public enum ItemType
     {
-        name = item.name;
-        id = item.id;
+        Default,
+        Food,
+        Helmet,
+        Weapon,
+        Shield,
+        Boots,
+        Chest
+    }
+
+    public abstract class ItemObject : ScriptableObject
+    {
+        public int id;
+        public Sprite uiDisplay;
+        public ItemType type;
+        [TextArea(15, 20)] public string description;
+    }
+
+    [Serializable]
+    public class Item
+    {
+        public string name;
+        public int id;
+
+        public Item(ItemObject item)
+        {
+            name = item.name;
+            id = item.id;
+        }
     }
 }

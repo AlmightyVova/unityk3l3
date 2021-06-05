@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using Scriptable_Objects.Items.Scripts;
 using UnityEditor;
 using UnityEngine;
 
@@ -107,6 +108,7 @@ public class InventoryObject : ScriptableObject
                 var newSlot = newContainer.items[i];
                 container.items[i].UpdateSlot(newSlot.id, newSlot.item, newSlot.amount);
             }
+
             stream.Close();
         }
     }
@@ -127,7 +129,9 @@ public class Inventory
 [Serializable]
 public class InventorySlot
 {
-    public int id = -1;
+    public ItemType[] allowedItems = new ItemType[0];
+    public UserInterface parent;
+    public int id;
     public Item item;
     public int amount;
 
@@ -155,5 +159,17 @@ public class InventorySlot
         this.id = id;
         this.item = item;
         this.amount = amount;
+    }
+
+    public bool CanPlaceInSlot(ItemObject item)
+    {
+        if (allowedItems.Length <= 0)
+            return true;
+
+        for (int i = 0; i < allowedItems.Length; i++)
+            if (item.type == allowedItems[i])
+                return true;
+
+        return false;
     }
 }

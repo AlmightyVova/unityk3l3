@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using Scriptable_Objects.Items.Scripts;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Default Object", menuName = "Inventory System/Items/Default")]
-public class DefaultObject : ItemObject
+[CreateAssetMenu(fileName = "New Chest Object", menuName = "Inventory System/Items/Chest")]
+public class ChestObject : ItemObject
 {
     public void Awake()
     {
-        type = ItemType.Default;
+        type = ItemType.Chest;
     }
 }

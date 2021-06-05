@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Scriptable_Objects.Items.Scripts;
 using UnityEngine;
 
 public class PlayerInventoryScript : MonoBehaviour
 {
+    public MouseItem MouseItem = new MouseItem();
     public InventoryObject inventory;
 
     public void OnTriggerEnter(Collider other)

@@ -139,11 +139,3 @@ public class DisplayInventory : MonoBehaviour
         return new Vector2(xStart + xSpaceBetweenItems * (i % numOfColumns), yStart + (-ySpaceBetweenItems * (i / numOfColumns)));
     }
 }
-
-public class MouseItem
-{
-    public GameObject Obj;
-    public InventorySlot Item;
-    public InventorySlot HoverItem;
-    public GameObject HoverObj;
-}
